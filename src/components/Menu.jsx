@@ -115,21 +115,70 @@ const Menu = ({ startQuiz, lastPerformance }) => {
             { id: 2, title: 'Domain 2: Security and Compliance', icon: <ShieldCheck />, color: 'bg-red-500', weight: '30%' },
             { id: 3, title: 'Domain 3: Cloud Technology and Services', icon: <Cloud />, color: 'bg-green-500', weight: '34%' },
             { id: 4, title: 'Domain 4: Billing, Pricing, and Support', icon: <CreditCard />, color: 'bg-purple-500', weight: '12%' },
-          ].map(d => (
-            <button 
-              key={d.id}
-              onClick={() => startQuiz('domain', d.id)}
-              className={`flex items-center p-6 rounded-2xl border shadow-sm hover:shadow-xl hover:border-orange-300 hover:scale-105 transition-all group text-left ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}
-            >
-              <div className={`${d.color} text-white p-4 rounded-xl mr-5 group-hover:scale-110 transition-transform flex-shrink-0`}>
-                {d.icon}
-              </div>
-              <div>
-                <h3 className={`font-bold text-lg leading-tight ${isDarkMode ? 'text-white' : ''}`}>{d.title}</h3>
-                <p className={`text-sm mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-400'}`}>Weight: {d.weight} • 30 Questions</p>
-              </div>
-            </button>
-          ))}
+          ].map(d => {
+            const pct = lastPerformance ? lastPerformance[d.id] : null;
+            const radius = 50;
+            const circumference = 2 * Math.PI * radius;
+            const offset = pct !== null ? ((100 - pct) / 100) * circumference : circumference;
+            const isGood = pct && pct >= 80;
+            
+            return (
+              <button 
+                key={d.id}
+                onClick={() => startQuiz('domain', d.id)}
+                className={`flex items-center p-6 rounded-2xl border shadow-sm hover:shadow-xl hover:border-orange-300 transition-shadow group text-left hover-smooth-scale relative ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}
+              >
+                {pct !== null && (
+                  <div className="absolute top-2 right-2 flex items-center justify-center">
+                    <svg className="w-20 h-20" viewBox="0 0 120 120">
+                      {/* Background circle */}
+                      <circle
+                        cx="60"
+                        cy="60"
+                        r={radius}
+                        fill="none"
+                        stroke={isDarkMode ? '#475569' : '#cbd5e1'}
+                        strokeWidth="8"
+                      />
+                      {/* Progress circle */}
+                      <circle
+                        cx="60"
+                        cy="60"
+                        r={radius}
+                        fill="none"
+                        stroke={isGood ? '#10b981' : '#ef4444'}
+                        strokeWidth="8"
+                        strokeDasharray={circumference}
+                        strokeDashoffset={offset}
+                        strokeLinecap="round"
+                        style={{ transition: 'stroke-dashoffset 0.8s ease-in-out' }}
+                        transform="rotate(-90 60 60)"
+                      />
+                      {/* Percentage text */}
+                      <text
+                        x="60"
+                        y="68"
+                        textAnchor="middle"
+                        fontFamily="inherit"
+                        fontSize="28"
+                        fontWeight="700"
+                        fill={isGood ? '#10b981' : '#ef4444'}
+                      >
+                        {pct}%
+                      </text>
+                    </svg>
+                  </div>
+                )}
+                <div className={`${d.color} text-white p-4 rounded-xl mr-5 group-hover:scale-110 transition-transform flex-shrink-0`}>
+                  {d.icon}
+                </div>
+                <div>
+                  <h3 className={`font-bold text-lg leading-tight ${isDarkMode ? 'text-white' : ''}`}>{d.title}</h3>
+                  <p className={`text-sm mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-400'}`}>Weight: {d.weight} • 30 Questions</p>
+                </div>
+              </button>
+            );
+          })}
                 </div>
 
                 {/* Full Exam Simulation */}
@@ -170,24 +219,7 @@ const Menu = ({ startQuiz, lastPerformance }) => {
                   </button>
                 </div>
 
-                {/* Last Performance */}
-                {lastPerformance && (
-                  <div className={`p-8 rounded-2xl border shadow-sm ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
-                    <h3 className={`font-bold text-2xl mb-6 ${isDarkMode ? 'text-white' : ''}`}>Last Performance</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {[1,2,3,4].map(dom => {
-                        const pct = lastPerformance[dom];
-                        const isGood = pct >= 70;
-                        return (
-                          <div key={dom} className={`p-4 rounded-xl text-center border ${isGood ? isDarkMode ? 'bg-slate-700 border-slate-600' : 'bg-emerald-50 border-emerald-200' : isDarkMode ? 'bg-slate-700 border-slate-600' : 'bg-red-50 border-red-200'}`}>
-                            <p className={`text-sm font-bold mb-2 ${isGood ? isDarkMode ? 'text-emerald-400' : 'text-emerald-700' : isDarkMode ? 'text-red-400' : 'text-red-700'}`}>Domain {dom}</p>
-                            <p className={`text-2xl font-bold ${isGood ? isDarkMode ? 'text-emerald-400' : 'text-emerald-600' : isDarkMode ? 'text-red-400' : 'text-red-600'}`}>{pct}%</p>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
+
               </div>
             </div>
           )}
@@ -275,8 +307,8 @@ const Menu = ({ startQuiz, lastPerformance }) => {
 
                   <div className="bg-gradient-to-br from-orange-500 to-red-500 p-8 rounded-2xl text-white shadow-lg">
                     <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                      <div className="bg-white bg-opacity-20 p-2 rounded-lg">
-                        <Info className="w-6 h-6 text-white" />
+                      <div className="bg-white bg-opacity-30 p-2 rounded-lg">
+                        <Info className="w-6 h-6 text-orange-600" />
                       </div>
                       Important
                     </h3>

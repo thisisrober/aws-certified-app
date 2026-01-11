@@ -196,13 +196,15 @@ const Sidebar = ({
             {currentQ.type === 'multiple' && tempAns.length > 2 && (
               <div className="text-xs text-red-600 mb-2">You have selected more than 2 options. Reduce your choices to continue.</div>
             )}
-            <button
-              onClick={() => onSubmit && onSubmit(tempAns)}
-              disabled={quizFinished || JSON.stringify(tempAns.slice().sort()) === JSON.stringify((userAns || []).slice().sort()) || (currentQ.type === 'multiple' && tempAns.length > 2)}
-              className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold transition-colors disabled:opacity-50"
-            >
-              Continue
-            </button>
+            {quizConfig?.type !== 'full' && (
+              <button
+                onClick={() => onSubmit && onSubmit(tempAns)}
+                disabled={quizFinished || JSON.stringify(tempAns.slice().sort()) === JSON.stringify((userAns || []).slice().sort()) || (currentQ.type === 'multiple' && tempAns.length > 2)}
+                className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-bold transition-colors disabled:opacity-50"
+              >
+                Continue
+              </button>
+            )}
           </div>
           </div>
 
@@ -243,14 +245,30 @@ const Sidebar = ({
                   <>
                     <button
                       disabled={prevDisabled}
-                      onClick={() => { if (!prevDisabled) { setCurrentIndex(prevUnanswered); setShowFeedback(false); } }}
+                      onClick={() => { 
+                        if (!prevDisabled) { 
+                          if (quizConfig?.type === 'full' && tempAns.length > 0) {
+                            onSubmit && onSubmit(tempAns);
+                          }
+                          setCurrentIndex(prevUnanswered); 
+                          setShowFeedback(false); 
+                        } 
+                      }}
                       className={`flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-bold disabled:opacity-50 transition-all ${isDarkMode ? 'bg-slate-800 border border-slate-700 text-slate-200 hover:bg-slate-700' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'}`}
                     >
                       <ChevronLeft className="w-5 h-5" /> Previous
                     </button>
                     <button
                       disabled={nextDisabled}
-                      onClick={() => { if (!nextDisabled) { setCurrentIndex(nextUnanswered); setShowFeedback(false); } }}
+                      onClick={() => { 
+                        if (!nextDisabled) { 
+                          if (quizConfig?.type === 'full' && tempAns.length > 0) {
+                            onSubmit && onSubmit(tempAns);
+                          }
+                          setCurrentIndex(nextUnanswered); 
+                          setShowFeedback(false); 
+                        } 
+                      }}
                       className={`flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-bold disabled:opacity-50 transition-all ${isDarkMode ? 'bg-orange-500 text-white hover:bg-orange-600' : 'bg-slate-900 text-white hover:bg-slate-800'}`}
                     >
                       Next <ChevronRight className="w-5 h-5" />
@@ -271,13 +289,21 @@ const Sidebar = ({
                 const disabledGrid = quizConfig?.type === 'domain' && hasAnswer;
 
                 const baseStyle = `${currentIndex === idx ? 'ring-2 ring-orange-500 border-orange-500' : 'border-transparent'}`;
-                const statusStyle = flags[idx]
-                  ? isDarkMode ? 'bg-slate-700 text-orange-400 border-slate-600' : 'bg-orange-100 text-orange-600 border-orange-200'
-                  : isCorrect
-                    ? isDarkMode ? 'bg-slate-700 text-emerald-400 border-slate-600' : 'bg-emerald-100 text-emerald-600 border-emerald-200'
-                    : isIncorrect
-                      ? isDarkMode ? 'bg-slate-700 text-red-400 border-slate-600' : 'bg-red-100 text-red-600 border-red-200'
-                      : isDarkMode ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-white text-slate-400 border-slate-200';
+                
+                // For exam mode (full), only show answered/unanswered. For domain mode, show correct/incorrect
+                const statusStyle = quizConfig?.type === 'full'
+                  ? flags[idx]
+                    ? isDarkMode ? 'bg-slate-700 text-orange-400 border-slate-600' : 'bg-orange-100 text-orange-600 border-orange-200'
+                    : hasAnswer
+                      ? isDarkMode ? 'bg-slate-700 text-slate-300 border-slate-600' : 'bg-slate-200 text-slate-700 border-slate-300'
+                      : isDarkMode ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-white text-slate-400 border-slate-200'
+                  : flags[idx]
+                    ? isDarkMode ? 'bg-slate-700 text-orange-400 border-slate-600' : 'bg-orange-100 text-orange-600 border-orange-200'
+                    : isCorrect
+                      ? isDarkMode ? 'bg-slate-700 text-emerald-400 border-slate-600' : 'bg-emerald-100 text-emerald-600 border-emerald-200'
+                      : isIncorrect
+                        ? isDarkMode ? 'bg-slate-700 text-red-400 border-slate-600' : 'bg-red-100 text-red-600 border-red-200'
+                        : isDarkMode ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-white text-slate-400 border-slate-200';
 
                 return (
                   <div key={idx} className="relative">

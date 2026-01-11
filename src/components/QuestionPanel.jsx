@@ -59,17 +59,17 @@ const QuestionPanel = ({
           <div className="flex gap-2">
             <button 
               onClick={() => setFlags({...flags, [currentIndex]: !flags[currentIndex]})}
-              className={`p-2 rounded-lg border transition-all ${flags[currentIndex] ? 'bg-orange-50 border-orange-200 text-orange-500' : isDarkMode ? 'text-slate-400 border-slate-600 hover:border-slate-500' : 'text-slate-400 border-slate-200 hover:border-slate-300'}`}
+              className={`p-2 rounded-lg border transition-all ${flags[currentIndex] ? isDarkMode ? 'bg-orange-900 border-orange-700 text-orange-400' : 'bg-orange-50 border-orange-200 text-orange-500' : isDarkMode ? 'bg-slate-700 text-slate-400 border-slate-600 hover:border-slate-500' : 'text-slate-400 border-slate-200 hover:border-slate-300'}`}
               title="Mark for review"
             >
               <Flag className={`w-5 h-5 ${flags[currentIndex] ? 'fill-current' : ''}`} />
             </button>
             <button 
               onClick={() => setShowNotesBox(!showNotesBox)}
-              className={`p-2 rounded-lg border transition-all ${showNotesBox ? 'bg-blue-50 border-blue-200' : isDarkMode ? 'text-slate-400 border-slate-600 hover:border-slate-500' : 'text-slate-400 border-slate-200 hover:border-slate-300'}`}
+              className={`p-2 rounded-lg border transition-all ${showNotesBox ? isDarkMode ? 'bg-blue-900 border-blue-700 text-blue-400' : 'bg-blue-50 border-blue-200' : isDarkMode ? 'bg-slate-700 text-slate-400 border-slate-600 hover:border-slate-500' : 'text-slate-400 border-slate-200 hover:border-slate-300'}`}
               title="Add note"
             >
-              <BookMarked className={`w-5 h-5 ${showNotesBox ? 'text-blue-500' : isDarkMode ? 'text-slate-400' : 'text-slate-400'}`} />
+              <BookMarked className={`w-5 h-5 ${showNotesBox ? isDarkMode ? 'text-blue-400' : 'text-blue-500' : isDarkMode ? 'text-slate-400' : 'text-slate-400'}`} />
             </button>
           </div>
         </div>

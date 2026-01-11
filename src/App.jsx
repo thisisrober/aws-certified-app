@@ -38,6 +38,25 @@ const App = () => {
   const [reviewAcknowledged, setReviewAcknowledged] = useState(false);
   const [lastPerformance, setLastPerformance] = useState(null);
 
+  // Load lastPerformance from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('lastPerformance');
+    if (saved) {
+      try {
+        setLastPerformance(JSON.parse(saved));
+      } catch (e) {
+        console.error('Failed to parse lastPerformance from localStorage', e);
+      }
+    }
+  }, []);
+
+  // Save lastPerformance to localStorage whenever it changes
+  useEffect(() => {
+    if (lastPerformance) {
+      localStorage.setItem('lastPerformance', JSON.stringify(lastPerformance));
+    }
+  }, [lastPerformance]);
+
   const startQuiz = (type, domainId = null) => {
     let selected = [];
     if (type === 'domain') {
