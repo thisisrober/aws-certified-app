@@ -7,6 +7,19 @@ import QuestionPanel from './components/QuestionPanel';
 import Sidebar from './components/Sidebar';
 import Result from './components/Result';
 
+const shuffleQuestionOptions = (question) => {
+  const optionsWithIndices = question.options.map((opt, idx) => ({ option: opt, originalIdx: idx }));
+  const shuffled = shuffleUtil(optionsWithIndices);
+  const newOptions = shuffled.map(item => item.option);
+  const newCorrect = question.correct.map(correctIdx => shuffled.findIndex(item => item.originalIdx === correctIdx));
+  
+  return {
+    ...question,
+    options: newOptions,
+    correct: newCorrect
+  };
+};
+
 const App = () => {
   const [view, setView] = useState('menu'); // 'menu', 'quiz'
   const [quizConfig, setQuizConfig] = useState(null);
@@ -36,10 +49,10 @@ const App = () => {
       selected = shuffleUtil([...d1, ...d2, ...d3, ...d4]);
     }
 
+    selected = selected.map(q => shuffleQuestionOptions(q));
+
     setQuestions(selected);
-    // Diagnostic: if no questions found, notify user
     if (!selected || selected.length === 0) {
-      // eslint-disable-next-line no-alert
       alert(`No questions available for Domain ${domainId}`);
     }
     setQuizConfig({ type, domainId, immediateFeedback: type === 'domain' });
@@ -54,17 +67,14 @@ const App = () => {
     setTimeLeft(5400);
   };
 
-  // Wrapper to help diagnose click events from Menu
   const startQuizWrapper = (type, domainId = null) => {
     try {
       startQuiz(type, domainId);
     } catch (err) {
-      // eslint-disable-next-line no-alert
       alert('Error starting the test: ' + (err && err.message));
     }
   };
 
-  // showFeedback is controlled by submit actions; no global close events needed
 
   useEffect(() => {
     let timer;
@@ -76,7 +86,6 @@ const App = () => {
     return () => clearInterval(timer);
   }, [view, quizFinished, timeLeft]);
 
-  // Request to finish quiz: for full/exam mode trigger review step
   const requestFinish = () => {
     if (quizConfig?.type === 'full') {
       setReviewOpen(true);
@@ -87,7 +96,6 @@ const App = () => {
   };
 
   const finalizeFinish = () => {
-    // compute per-domain breakdown and store for Menu
     const perf = {};
     [1,2,3,4].forEach(dom => {
       const domQs = questions.filter(q => q.domain === dom);
@@ -104,17 +112,14 @@ const App = () => {
     setReviewOpen(false);
   };
 
-  // Submit the finalized answer for the current question.
   const handleSubmit = (submittedAns) => {
     setUserAnswers({ ...userAnswers, [currentIndex]: submittedAns });
 
-    // Study mode (domain): show feedback and lock navigation while feedback visible.
     if (quizConfig?.type === 'domain') {
       setShowFeedback(true);
       return;
     }
 
-    // Exam/full mode: do not show feedback, auto-advance to next question.
     setShowFeedback(false);
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -127,7 +132,6 @@ const App = () => {
     return <Menu startQuiz={startQuizWrapper} lastPerformance={lastPerformance} />;
   }
 
-  // If we're in quiz view but no questions were loaded, show helpful message
   if (view === 'quiz' && (!questions || questions.length === 0)) {
     return (
       <div className="min-h-screen flex items-center justify-center">
