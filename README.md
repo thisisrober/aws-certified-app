@@ -6,7 +6,7 @@
 
 **An interactive web application to practice for the AWS Cloud Practitioner certification exam**
 
-[🌐 Visit the website](#deployment) • [📚 Documentation](#table-of-contents) • [💻 Requirements](#requirements) • [🚀 Quick Start](#quick-start-guide)
+[🌐 Test the application!](https://thisisrober.es/projects/aws-cloud-practitioner-exam-prep-app/) • [📚 Documentation](#table-of-contents) • [💻 Requirements](#requirements) • [🚀 Quick Start](#quick-start-guide)
 
 </div>
 
