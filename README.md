@@ -1,4 +1,4 @@
-# AWS Certified Cloud Practitioner - Practice Exam Simulator
+# AWS Certified Cloud Practitioner - Practice exam simulator
 
 <div align="center">
 
@@ -6,7 +6,7 @@
 
 **An interactive web application to practice for the AWS Cloud Practitioner certification exam**
 
-[🌐 Visit the website](#deployment) • [📚 Documentation](#table-of-contents) • [💻 Requirements](#requirements) • [🚀 Quick Start](#quick-start-guide)
+[🌐 Test the application!](https://thisisrober.es/projects/aws-cloud-practitioner-exam-prep-app/)
 
 </div>
 
@@ -14,23 +14,26 @@
 
 ## 📋 Table of Contents
 
-- [Project Description](#project-description)
+- [Project description](#project-description)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
-- [Quick Start Guide](#quick-start-guide)
-- [Detailed Installation](#detailed-installation)
-- [Application Usage](#application-usage)
-- [Technologies Used](#technologies-used)
-- [Project Structure](#project-structure)
-- [Production Deployment](#production-deployment)
+- [Quick start guide](#quick-start-guide)
+- [Detailed installation](#detailed-installation)
+- [Application usage](#application-usage)
+- [Technologies used](#technologies-used)
+- [Project structure](#project-structure)
 - [Troubleshooting](#troubleshooting)
-- [Author](#author)
+- [Support and contact](#support-and-contact)
+- [License](#license)
+- [Credits](#credits)
+- [Additional study resources](#additional-study-resources)
+- [Tips for passing the exam](#tips-for-passing-the-exam)
 
 ---
 
-## 📖 Project Description
+## 📖 Project description
 
-**AWS Cloud Practitioner Test App** is a modern web application designed to help you prepare for the **AWS Certified Cloud Practitioner** certification exam.
+**AWS Cloud Practitioner Exam Prep App** is a modern web application designed to help you prepare for the **AWS Certified Cloud Practitioner** certification exam.
 
 With this tool, you can:
 - Practice with questions organized by domain
@@ -49,23 +52,23 @@ The official exam has 65 questions distributed across 4 main domains:
 
 ## ✨ Features
 
-### 🎯 Study Modes
-- **Domain Mastery Tests**: Practice domain-specific questions (30 questions each)
-- **Full Exam Simulation**: Complete simulation with 65 questions in 90 minutes
-- **Immediate Feedback**: Detailed explanations for each answer
+### 🎯 Study modes
+- **Domain mastery tests**: practice domain-specific questions (30 questions each)
+- **Full exam simulation**: complete simulation with 65 questions in 90 minutes
+- **Immediate feedback**: detailed explanations for each answer
 
-### 📊 Performance Analysis
+### 📊 Performance analysis
 - Score breakdown by domain
 - Progress visualization with charts
 - History of recent tests
 - Indicators for weak areas
 
-### 🗺️ Study Resources
-- **Interactive Concept Map**: XMind mind map with all topics
-- **Technical Explanations**: Details for each question
+### 🗺️ Study resources
+- **Interactive concept map**: XMind map with all topics
+- **Technical explanations**: details for each question
 - **Recommendations**: AWS-based preparation guide
 
-### 🎨 Premium Interface
+### 🎨 Intuitive interface
 - Modern and responsive design
 - Smooth animations
 - Intuitive tab system
@@ -78,19 +81,19 @@ The official exam has 65 questions distributed across 4 main domains:
 
 To run this project on your machine, you need:
 
-### Required Software
+### Required software
 
 | Software | Minimum Version | Download Link |
 |----------|----------------|---------------|
 | **Node.js** | 18.x LTS | [nodejs.org](https://nodejs.org/) |
 | **npm** | 9.x | Installed with Node.js |
 
-### Operating System
+### Operating system
 - ✅ Windows 10+
 - ✅ macOS 10.13+
 - ✅ Linux (Ubuntu, Fedora, etc.)
 
-### Web Browser
+### Web browser
 - Chrome 90+
 - Firefox 88+
 - Safari 14+
@@ -98,9 +101,9 @@ To run this project on your machine, you need:
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 Quick start guide
 
-### Option 1: Single Command (Easiest)
+### Option 1: single command (easiest)
 
 ```bash
 # 1. Clone the repository
@@ -115,10 +118,24 @@ npm install
 # 4. Start the application
 npm run dev
 
+# Done! Open http://localhost:5173/projects/aws-cloud-practitioner-exam-prep-app/ in your browser
+```
+
+### Option 2: Docker Hub (pre-built image - fastest)
+
+```bash
+# 1. Pull the image from Docker Hub
+docker pull thisisrober/aws-exam-prep-app:latest
+
+# 2. Run the container
+docker run -d -p 5173:5173 --name aws-exam-app thisisrober/aws-exam-prep-app:latest
+
 # Done! Open http://localhost:5173 in your browser
 ```
 
-### Option 2: Without Git (Download ZIP)
+No need to clone or build - the image is ready to use!
+
+### Option 3: without git (Download ZIP)
 
 1. Download the project as a ZIP from GitHub
 2. Extract the folder
@@ -127,9 +144,9 @@ npm run dev
 
 ---
 
-## 📦 Detailed Installation
+## 📦 Detailed installation
 
-### Step 1: Install Node.js
+### Step 1: install Node.js
 
 1. Visit [nodejs.org](https://nodejs.org/)
 2. Download the **LTS (Long Term Support)** version
@@ -141,21 +158,21 @@ node --version    # Should show v18.x.x or higher
 npm --version     # Should show 9.x.x or higher
 ```
 
-### Step 2: Download the Project
+### Step 2: download the project
 
-**Option A - With Git:**
+**Option A - with Git:**
 ```bash
 git clone https://github.com/thisisrober/aws-cloud-practitioner-test-app.git
 cd aws-cloud-practitioner-test-app
 ```
 
-**Option B - Download ZIP:**
+**Option B - download ZIP:**
 1. Go to the [project's GitHub](https://github.com/thisisrober/aws-cloud-practitioner-test-app)
 2. Click **Code** → **Download ZIP**
 3. Extract the folder
 4. Open a terminal in the extracted folder
 
-### Step 3: Install Dependencies
+### Step 3: install dependencies
 
 ```bash
 npm install
@@ -163,7 +180,7 @@ npm install
 
 This will download and install all necessary libraries. It may take 2-5 minutes.
 
-### Step 4: Start the Development Server
+### Step 4: start the development server
 
 ```bash
 npm run dev
@@ -178,7 +195,7 @@ You should see something like:
   ➜  Press h to show help
 ```
 
-### Step 5: Open in Your Browser
+### Step 5: open in your browser
 
 - Open your favorite browser
 - Go to: **http://localhost:5173/**
@@ -186,15 +203,15 @@ You should see something like:
 
 ---
 
-## 💻 Application Usage
+## 💻 Application usage
 
 ### Main Screen
 
 The main page presents three options:
 
 #### 1️⃣ **Practice Tests**
-- **Domain Tests**: Choose a specific domain to practice 30 questions
-- **Full Exam Simulation**: Complete 90-minute simulation with 65 questions
+- **Domain Tests**: choose a specific domain to practice 30 questions
+- **Full Exam Simulation**: complete 90-minute simulation with 65 questions
 
 #### 2️⃣ **Concept Map**
 - Visualize all topics and concepts you need to study
@@ -206,36 +223,36 @@ The main page presents three options:
 - Study tips
 - Important information about the exam
 
-### During a Test
+### During a test
 
-#### Main Interface
-- **Left Panel**: Question and answer options
-- **Right Panel**: Navigation, progress, and analysis
+#### Main interface
+- **Left panel**: question and answer options
+- **Right panel**: navigation, progress, and analysis
 
 #### Controls
-- **Flag Button**: Mark the question for later review
-- **Notes Button**: Opens an editor to add personal notes
+- **Flag button**: mark the question for later review
+- **Notes button**: opens an editor to add personal notes
   - Notes are marked with a blue dot in the sidebar
-- **Continue Button**: Confirms your answer and advances
+- **Continue button**: confirms your answer and advances
 
 #### Navigation
-- **Previous Button**: Goes to the previous unanswered question
-- **Next Button**: Advances to the next question
-- **Question Grid**: Click any number to go directly to that question
+- **Previous button**: goes to the previous unanswered question
+- **Next button**: advances to the next question
+- **Question grid**: click any number to go directly to that question
 
-#### Question Indicators
-- 🟡 **Yellow/Orange**: Flagged question
-- 🟢 **Green**: Correct answer
-- 🔴 **Red**: Incorrect answer
-- ⚪ **White**: Unanswered
+#### Question indicators
+- 🟡 **Yellow/Orange**: flagged question
+- 🟢 **Green**: correct answer
+- 🔴 **Red**: incorrect answer
+- ⚪ **White**: unanswered
 
-### Study Mode (Domain Tests)
+### Study mode (domain tests)
 
 - Receive immediate feedback after answering
 - Read the explanation for the correct answer
 - Learn while you practice
 
-### Exam Mode (Full Simulation)
+### Exam mode (full simulation)
 
 - No feedback until finished
 - Experience real exam conditions
@@ -244,43 +261,25 @@ The main page presents three options:
 
 ---
 
-## 🛠️ Available Commands
-
-```bash
-# Start development server (with hot reload)
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build locally
-npm run preview
-
-# Run linter (check code)
-npm run lint
-```
-
----
-
 ## 🏗️ Technologies Used
 
 ### Frontend
-- **React 19**: Modern JavaScript framework
-- **Vite**: Ultra-fast bundler and development server
-- **Tailwind CSS**: Utility-first CSS framework
-- **PostCSS**: CSS transformation tool
+- **React 19**
+- **Vite**
+- **Tailwind CSS**
+- **PostCSS**
 
-### Components and Libraries
-- **lucide-react**: Professional SVG icons
-- **JavaScript ES6+**: Modern JavaScript features
+### Components and libraries
+- **lucide-react**
+- **JavaScript ES6+**
 
 ### Development
-- **ESLint**: Linter for clean code
-- **Node.js**: JavaScript runtime
+- **ESLint**
+- **Node.js**
 
 ---
 
-## 📁 Project Structure
+## 📁 Project structure
 
 ```
 aws-cloud-practitioner-test-app/
@@ -315,71 +314,32 @@ aws-cloud-practitioner-test-app/
 
 ---
 
-## 🚀 Production Deployment
-
-### Option 1: Build for Production
-
-```bash
-# Generate the optimized version
-npm run build
-
-# This creates the 'dist/' folder with all files ready to serve
-```
-
-### Option 2: Deploy on Netlify (Recommended - Free)
-
-```bash
-npm install -g netlify-cli
-netlify deploy --prod
-```
-
-### Option 3: Deploy on Vercel (Free)
-
-```bash
-npm install -g vercel
-vercel
-```
-
-### Option 4: Deploy via FTP to Your Server
-
-1. Run: `npm run build`
-2. Upload the contents of the `dist/` folder to your server via FTP
-3. If using a subfolder, update `base` in `vite.config.js`:
-   ```javascript
-   export default {
-     base: '/your-folder/',
-   }
-   ```
-4. Rebuild and upload again
-
----
-
 ## ❓ Troubleshooting
 
 ### "npm: command not found"
 **Solution**: Node.js is not installed. Download it from [nodejs.org](https://nodejs.org/)
 
 ### "npm install takes too long"
-**Solution**: This is normal on first installation (2-5 minutes). If it's longer, try:
+**Solution**: this is normal on first installation (2-5 minutes). If it's longer, try:
 ```bash
 npm cache clean --force
 npm install
 ```
 
 ### Port 5173 is already in use
-**Solution**: Use another port:
+**Solution**: use another port:
 ```bash
 npm run dev -- --port 3000
 ```
 
 ### Changes don't reflect after editing code
-**Solution**: The development server has automatic hot reload. If it doesn't work:
+**Solution**: the development server has automatic hot reload. If it doesn't work:
 1. Save the file (Ctrl+S)
 2. Wait 1-2 seconds
 3. Reload the browser (F5)
 
 ### Error "Module not found"
-**Solution**: Make sure you've run:
+**Solution**: make sure you've run:
 ```bash
 npm install
 ```
@@ -392,11 +352,12 @@ npm install
 
 ---
 
-## 📞 Support and Contact
+## 📞 Support and contact
 
 - **GitHub**: [github.com/thisisrober](https://github.com/thisisrober)
 - **Website**: [thisisrober.es](https://thisisrober.es)
 - **Email**: Contact through my website
+- **LinkedIn**: [linkedin.com/in/thisisrober/](https://www.linkedin.com/in/thisisrober/)
 
 ---
 
@@ -422,7 +383,7 @@ Made with ❤️ by [thisisrober](https://thisisrober.es)
 
 ---
 
-## 📚 Additional Study Resources
+## 📚 Additional study resources
 
 - [AWS Cloud Practitioner Exam Guide](https://aws.amazon.com/certification/certified-cloud-practitioner/)
 - [AWS Whitepapers](https://aws.amazon.com/whitepapers/)
@@ -431,14 +392,14 @@ Made with ❤️ by [thisisrober](https://thisisrober.es)
 
 ---
 
-## 🎯 Tips for Passing the Exam
+## 🎯 Tips for passing the exam
 
-1. **Use this app regularly**: Practice at least 30 minutes daily
-2. **Focus on weak domains**: Performance charts show where you need improvement
-3. **Read the explanations**: Don't just look for the correct answer, understand why
-4. **Take multiple simulations**: The goal is consistently 70%+, ideally 80%+
-5. **Manage your time**: In the full simulation, you have ~1.38 minutes per question
-6. **Review before finishing**: Use the review screen to verify doubtful answers
+1. **Use this app regularly**: practice at least 30 minutes daily
+2. **Focus on weak domains**: performance charts show where you need improvement
+3. **Read the explanations**: don't just look for the correct answer, understand why
+4. **Take multiple simulations**: the goal is consistently 70%+, ideally 80%+
+5. **Manage your time**: in the full simulation, you have ~1.38 minutes per question
+6. **Review before finishing**: use the review screen to verify doubtful answers
 
 ---
 
@@ -448,6 +409,6 @@ Made with ❤️ by [thisisrober](https://thisisrober.es)
 
 **Happy Studying! 🎓**
 
-© 2026 AWS Cloud Practitioner Test App. Made with ❤️ by thisisrober.
+© 2026 AWS Cloud Practitioner Exam Prep App. Made with ❤️ by thisisrober.
 
 </div>
