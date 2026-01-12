@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { BookOpen, ShieldCheck, Cloud, CreditCard, Trophy, Map, Info, Loader, Moon, Sun } from 'lucide-react';
 import ConceptMap from './ConceptMap';
 import Footer from './Footer';
+import LastExamSummary from './LastExamSummary';
 import { ThemeContext } from '../context/ThemeContext';
 
-const Menu = ({ startQuiz, lastPerformance }) => {
+const Menu = ({ startQuiz, lastPerformance, lastFullExamPerformance, lastExamScore }) => {
   const [activeTab, setActiveTab] = useState('tests');
   const [isLoading, setIsLoading] = useState(false);
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
@@ -219,6 +220,12 @@ const Menu = ({ startQuiz, lastPerformance }) => {
                   </button>
                 </div>
 
+                {/* Last Exam Summary Card */}
+                {lastFullExamPerformance && lastExamScore && (
+                  <div className="mt-8">
+                    <LastExamSummary domainScores={lastFullExamPerformance} overallScore={lastExamScore} />
+                  </div>
+                )}
 
               </div>
             </div>

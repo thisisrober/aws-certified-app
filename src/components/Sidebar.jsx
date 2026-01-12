@@ -71,39 +71,24 @@ const Sidebar = ({
       {!quizFinished ? (
         <>
             {reviewOpen ? (
-              <div className="space-y-4 mb-6">
-                <h4 className="font-bold mb-3">Review questions before finishing</h4>
-                <div className="space-y-2 max-h-72 overflow-y-auto">
-                  {questions.map((q, idx) => {
-                    const ans = userAnswers[idx] || [];
-                    const hasAnswer = ans && ans.length > 0;
-                    return (
-                      <div key={idx} className={`p-3 rounded-lg border ${hasAnswer ? isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white' : isDarkMode ? 'bg-slate-700 border-slate-600' : 'bg-slate-50'} flex items-center justify-between`}>
-                        <div className="flex items-center gap-3">
-                          <button onClick={() => { setCurrentIndex(idx); setShowFeedback(false); }} className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${isDarkMode ? 'bg-slate-700 text-slate-200' : 'bg-slate-100'}`}>{idx+1}</button>
-                          <div>
-                            <div className="text-sm font-medium">Question {idx + 1}</div>
-                            <div className={`text-xs ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>{hasAnswer ? 'Answered' : 'Unanswered'}</div>
-                          </div>
-                        </div>
-                        <div>
-                          {hasAnswer ? <span className="text-sm text-emerald-600 font-bold">Answered</span> : <span className="text-sm text-red-600 font-bold">Open</span>}
-                        </div>
-                      </div>
-                    );
-                  })}
+              <div className={`flex flex-col h-full p-4 space-y-4`}>
+                <div className={`p-4 rounded-lg border-l-4 ${isDarkMode ? 'bg-slate-700 border-blue-500' : 'bg-blue-50 border-blue-500'}`}>
+                  <h4 className={`font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Ready to Finish?</h4>
+                  <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                    Please take the necessary time to review all your answers on the left. Make sure all questions are answered before confirming.
+                  </p>
                 </div>
 
-                <div className="mt-4">
-                  <label className="inline-flex items-center gap-2">
-                    <input type="checkbox" checked={reviewAcknowledged} onChange={(e) => setReviewAcknowledged(e.target.checked)} />
-                    <span className="text-sm">I have reviewed the questions and confirm to finish the test</span>
-                  </label>
-                </div>
+                <label className={`flex items-center gap-2 text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-700'} p-3 rounded-lg ${isDarkMode ? 'bg-slate-700' : 'bg-slate-50'}`}>
+                  <input type="checkbox" checked={reviewAcknowledged} onChange={(e) => setReviewAcknowledged(e.target.checked)} />
+                  <span>I have reviewed all answers</span>
+                </label>
 
-                <div className="mt-4 flex gap-3">
-                  <button onClick={() => { setReviewOpen(false); setReviewAcknowledged(false); }} className={`flex-1 py-2 rounded-lg ${isDarkMode ? 'bg-slate-700 text-white' : 'bg-slate-100'}`}>Cancel</button>
-                  <button onClick={() => { if (reviewAcknowledged) finalizeFinish(); }} disabled={!reviewAcknowledged} className="flex-1 py-2 bg-emerald-500 text-white rounded-lg disabled:opacity-50">Confirm Finish</button>
+                <div className="flex-1" />
+
+                <div className="space-y-3">
+                  <button onClick={() => { setReviewOpen(false); setReviewAcknowledged(false); }} className={`w-full py-3 rounded-lg font-bold transition-colors ${isDarkMode ? 'bg-slate-700 hover:bg-slate-600 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'}`}>Cancel</button>
+                  <button onClick={() => { if (reviewAcknowledged) finalizeFinish(); }} disabled={!reviewAcknowledged} className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed font-bold transition-colors">Confirm Finish</button>
                 </div>
               </div>
             ) : (
