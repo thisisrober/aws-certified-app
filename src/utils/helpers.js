@@ -10,19 +10,14 @@ export const formatTime = (seconds) => {
 };
 
 // Fisher-Yates shuffle returns a new shuffled array
-// Enhanced with timestamp-based randomization for better variety
+// Uses standard Fisher-Yates algorithm for proper randomization
 export const shuffle = (arr) => {
   const a = Array.isArray(arr) ? arr.slice() : [];
   
-  // Add extra randomization using timestamp and multiple passes
-  const seed = Date.now() + Math.random();
-  const extraShuffles = Math.floor(Math.random() * 3) + 1; // 1-3 extra shuffles
-  
-  for (let pass = 0; pass < extraShuffles; pass++) {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
+  // Standard Fisher-Yates shuffle - single pass is sufficient
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
   }
   
   return a;

@@ -130,23 +130,21 @@ const App = () => {
     
     if (type === 'domain') {
       // For domain tests, use only the curated QUESTION_BANK to avoid generated practice items
-      // Apply multiple shuffles for maximum randomization
+      // Single shuffle is sufficient for proper randomization
       const domainQuestions = QUESTION_BANK.filter(q => q.domain === domainId);
-      let shuffledDomain = shuffleUtil(domainQuestions);
-      // Apply additional shuffle to ensure different questions each time
-      shuffledDomain = shuffleUtil(shuffledDomain);
+      const shuffledDomain = shuffleUtil(domainQuestions);
       selected = shuffledDomain.slice(0, 30);
     } else {
-      // For full exams, shuffle each domain pool multiple times for variety
+      // For full exams, shuffle each domain pool once for proper randomization
       const d1Pool = FULL_POOL.filter(q => q.domain === 1);
       const d2Pool = FULL_POOL.filter(q => q.domain === 2);
       const d3Pool = FULL_POOL.filter(q => q.domain === 3);
       const d4Pool = FULL_POOL.filter(q => q.domain === 4);
       
-      const d1 = shuffleUtil(shuffleUtil(d1Pool)).slice(0, 16);
-      const d2 = shuffleUtil(shuffleUtil(d2Pool)).slice(0, 20);
-      const d3 = shuffleUtil(shuffleUtil(d3Pool)).slice(0, 21);
-      const d4 = shuffleUtil(shuffleUtil(d4Pool)).slice(0, 8);
+      const d1 = shuffleUtil(d1Pool).slice(0, 16);
+      const d2 = shuffleUtil(d2Pool).slice(0, 20);
+      const d3 = shuffleUtil(d3Pool).slice(0, 21);
+      const d4 = shuffleUtil(d4Pool).slice(0, 8);
       selected = shuffleUtil([...d1, ...d2, ...d3, ...d4]);
       
       // For full exams (65 questions): randomly select 50 to count, 15 are experimental
