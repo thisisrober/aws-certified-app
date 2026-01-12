@@ -90,4 +90,14 @@ h1, h2, h3, h4 {
 	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
+/* Match the card's smooth hover animation for the domain icon box */
+.domain-icon-box {
+	transform: scale(1);
+	transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .domain-icon-box {
+	transform: scale(1.05);
+}
+
 

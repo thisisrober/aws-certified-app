@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { BookOpen, ShieldCheck, Cloud, CreditCard, Trophy, Map, Info, Loader, Moon, Sun } from 'lucide-react';
 import ConceptMap from './ConceptMap';
 import Footer from './Footer';
+import LastExamSummary from './LastExamSummary';
 import { ThemeContext } from '../context/ThemeContext';
 
-const Menu = ({ startQuiz, lastPerformance }) => {
+const Menu = ({ startQuiz, lastPerformance, lastFullExamPerformance, lastExamScore }) => {
   const [activeTab, setActiveTab] = useState('tests');
   const [isLoading, setIsLoading] = useState(false);
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
@@ -169,7 +170,7 @@ const Menu = ({ startQuiz, lastPerformance }) => {
                     </svg>
                   </div>
                 )}
-                <div className={`${d.color} text-white p-4 rounded-xl mr-5 group-hover:scale-110 transition-transform flex-shrink-0`}>
+                <div className={`${d.color} text-white p-4 rounded-xl mr-5 domain-icon-box flex-shrink-0`}>
                   {d.icon}
                 </div>
                 <div>
@@ -219,6 +220,12 @@ const Menu = ({ startQuiz, lastPerformance }) => {
                   </button>
                 </div>
 
+                {/* Last Exam Summary Card */}
+                {lastFullExamPerformance && lastExamScore && (
+                  <div className="mt-8">
+                    <LastExamSummary domainScores={lastFullExamPerformance} overallScore={lastExamScore} />
+                  </div>
+                )}
 
               </div>
             </div>

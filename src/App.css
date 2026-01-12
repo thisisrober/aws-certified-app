@@ -5,6 +5,42 @@
   text-align: center;
 }
 
+/* Custom Scrollbar */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: rgba(100, 116, 139, 0.2) !important;
+  border-radius: 8px !important;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #f97316 !important;
+  border-radius: 8px !important;
+  border: 3px solid rgba(100, 116, 139, 0.2) !important;
+  background-clip: padding-box !important;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #ea580c !important;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:active {
+  background: #c2410c !important;
+}
+
+.scrollbar-custom::-webkit-scrollbar-button {
+  display: none !important;
+}
+
+/* Firefox */
+.scrollbar-custom {
+  scrollbar-color: #f97316 rgba(100, 116, 139, 0.2) !important;
+  scrollbar-width: thin !important;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

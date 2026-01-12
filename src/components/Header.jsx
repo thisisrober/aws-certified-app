@@ -42,7 +42,7 @@ const Header = ({ onBack, quizConfig, timeLeft, formatTime, quizFinished, finish
     <nav className={`border-b px-6 py-4 flex items-center justify-between sticky top-0 z-10 ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
       <div className="flex items-center gap-4">
         <button 
-          onClick={() => setShowAbandonDialog(true)}
+          onClick={() => quizFinished ? onBack() : setShowAbandonDialog(true)}
           className={`p-2 rounded-full transition-colors ${isDarkMode ? 'hover:bg-slate-700 text-slate-400' : 'hover:bg-slate-100 text-slate-500'}`}
         >
           <X className="w-5 h-5" />

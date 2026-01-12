@@ -17,13 +17,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 5s
-    volumes:
-      - app-data:/app/dist
     networks:
       - app-network
-
-volumes:
-  app-data:
 
 networks:
   app-network:

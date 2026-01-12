@@ -26,6 +26,11 @@ RUN npm install -g serve
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
 
+# Create non-root user for security
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+USER nodejs
+
 # Expose port
 EXPOSE 5173
 
