@@ -8,10 +8,17 @@ const Footer = ({ onTabChange }) => {
     <footer className="bg-slate-900 text-white py-12 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* About */}
+          {/* Other Certifications */}
           <div>
-            <h3 className="font-bold text-lg mb-3">AWS Practitioner Test</h3>
-            <p className="text-slate-400 text-sm">A comprehensive practice exam simulator for the AWS Certified Cloud Practitioner certification.</p>
+            <h3 className="font-bold text-lg mb-3">Other Certifications</h3>
+              <ul className="space-y-2 text-sm text-slate-400">
+                <li>
+                  <a href="#" className="hover:text-orange-400 transition-colors cursor-pointer">
+                  AWS Cloud Practitioner
+                  </a>
+                </li>
+              <li><i>(more coming soon!)</i></li>
+            </ul>
           </div>
 
           {/* Quick Links */}

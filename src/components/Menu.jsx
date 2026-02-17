@@ -43,12 +43,12 @@ const Menu = ({ startQuiz, lastPerformance, lastFullExamPerformance, lastExamSco
               </div>
             </div>
             <h1 className={`text-5xl md:text-6xl font-extrabold tracking-tight mb-2 ${isDarkMode ? 'text-white' : 'bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-red-600'}`}>
-              AWS Certified Cloud Practitioner
+              AWS Certified Application
             </h1>
             <p className={`text-2xl font-bold mb-8 ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
               Exam prep application by thisisrober
             </p>
-            <p className={`text-xl ${isDarkMode ? 'text-slate-400' : 'text-slate-600'} mb-8`}>Master the fundamentals with our comprehensive practice exam simulator</p>
+            <p className={`text-xl ${isDarkMode ? 'text-slate-400' : 'text-slate-600'} mb-8`}>Master the fundamentals of Cloud Practitioner with our comprehensive practice exam simulator. <i>(more certifications coming soon!)</i></p>
             
             {/* Tab Navigation */}
             <div className="flex gap-2 justify-center mb-8 flex-wrap">

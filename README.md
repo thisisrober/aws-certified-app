@@ -1,12 +1,13 @@
-# AWS Certified Cloud Practitioner - Practice exam simulator
-
 <div align="center">
 
-![AWS Cloud Practitioner](public/logo.png)
+# AWS Certified App
 
-**An interactive web application to practice for the AWS Cloud Practitioner certification exam**
+An interactive web application to practice for the AWS Cloud Practitioner certification exam. *(more certifications coming soon!)*
 
-[🌐 Test the application!](https://thisisrober.es/projects/aws-cloud-practitioner-exam-prep-app/)
+[![Live Site](https://img.shields.io/badge/🌐_Live-Try_Now!-6366f1?style=for-the-badge)](https://thisisrober.es/projects/aws-certified-app)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/thisisrober)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github)](https://github.com/thisisrober)
+[![Stars](https://img.shields.io/github/stars/thisisrober/aws-certified-app?style=for-the-badge&color=f59e0b)](https://github.com/thisisrober/aws-certified-app/stargazers)
 
 </div>
 
@@ -25,7 +26,6 @@
 - [Troubleshooting](#troubleshooting)
 - [Support and contact](#support-and-contact)
 - [License](#license)
-- [Credits](#credits)
 - [Additional study resources](#additional-study-resources)
 - [Tips for passing the exam](#tips-for-passing-the-exam)
 
@@ -33,7 +33,11 @@
 
 ## 📖 Project description
 
-**AWS Cloud Practitioner Exam Prep App** is a modern web application designed to help you prepare for the **AWS Certified Cloud Practitioner** certification exam.
+**AWS Certified App** is a modern web application designed to help you prepare for the **AWS Certified Cloud Practitioner** certification exam. Soon, will be more certifications of AWS due a high demand from users. 
+
+<div align="center" style="font-weight: bold; font-size: 20px; color: gold;">
+❤️ MANY THANKS FOR THE SUPPORT! ❤️
+</div><br>
 
 With this tool, you can:
 - Practice with questions organized by domain
@@ -162,12 +166,12 @@ npm --version     # Should show 9.x.x or higher
 
 **Option A - with Git:**
 ```bash
-git clone https://github.com/thisisrober/aws-cloud-practitioner-test-app.git
+git clone https://github.com/thisisrober/aws-certified-app.git
 cd aws-cloud-practitioner-test-app
 ```
 
 **Option B - download ZIP:**
-1. Go to the [project's GitHub](https://github.com/thisisrober/aws-cloud-practitioner-test-app)
+1. Go to the [project's GitHub](https://github.com/thisisrober/aws-certified-app)
 2. Click **Code** → **Download ZIP**
 3. Extract the folder
 4. Open a terminal in the extracted folder
@@ -371,17 +375,6 @@ This project is under the MIT license. You are free to:
 
 ---
 
-## 🙏 Credits
-
-Made with ❤️ by [thisisrober](https://thisisrober.es)
-
-**Based on open-source technologies:**
-- React
-- Vite
-- Tailwind CSS
-- Lucide Icons
-
----
 
 ## 📚 Additional study resources
 
@@ -403,12 +396,12 @@ Made with ❤️ by [thisisrober](https://thisisrober.es)
 
 ---
 
+## 📝 License
+
+Private — All rights reserved.
+
+---
+
 <div align="center">
-
-### Was this helpful? Consider leaving a ⭐ on GitHub
-
-**Happy Studying! 🎓**
-
-© 2026 AWS Cloud Practitioner Exam Prep App. Made with ❤️ by thisisrober.
-
+  Made with ❤️ by <a href="https://thisisrober.es">thisisrober</a>
 </div>

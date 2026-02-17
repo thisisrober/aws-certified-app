@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**AWS Certified Cloud Practitioner Exam Prep App** is a modern interactive web application that helps users practice for the AWS Certified Cloud Practitioner certification exam. It features domain-specific practice tests, full 90-minute exam simulations with immediate feedback, performance analytics, and an interactive concept map for studying AWS topics.
+**AWS Certified App** is a modern interactive web application that helps users practice for the AWS Certified Cloud Practitioner certification exam. It features domain-specific practice tests, full 90-minute exam simulations with immediate feedback, performance analytics, and an interactive concept map for studying AWS topics.
 
 The app supports:
 - 4 domain mastery tests (30 questions each)

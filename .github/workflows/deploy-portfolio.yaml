@@ -1,0 +1,87 @@
+name: Deploy Project to Portfolio
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  SERVER_IP: ${{ secrets.SERVER_IP }}
+  SERVER_USER: ubuntu
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+
+      - name: Determine repo name
+        id: repo
+        run: |
+          # GITHUB_REPOSITORY is owner/name
+          REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f2)
+          echo "repo_name=$REPO_NAME" >> $GITHUB_OUTPUT
+
+      - name: Deploy dist to portfolio projects folder
+        run: |
+          REPO_NAME=${{ steps.repo.outputs.repo_name }}
+          DEST_DIR=/home/ubuntu/thisisrober/projects/$REPO_NAME/
+
+          ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "mkdir -p $DEST_DIR"
+
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" dist/ $SERVER_USER@$SERVER_IP:$DEST_DIR
+
+      - name: (Optional) Post-deploy commands on server
+        run: |
+          # If your project needs additional server-side steps (install, restart), add them here.
+          # Example: ssh $SERVER_USER@$SERVER_IP "cd /home/ubuntu/thisisrober/projects/$REPO_NAME && npm ci --production"
+          echo "Deployed to /home/ubuntu/thisisrober/projects/${{ steps.repo.outputs.repo_name }}"
+
+# Notes:
+# - This workflow requires the repository secrets: `SERVER_IP` and `SSH_PRIVATE_KEY`.
+# - `SSH_PRIVATE_KEY` should correspond to a key authorized for the `$SERVER_USER` on the Lightsail instance.
+# - Place this file in a project's repo (or copy it into this mono-repo) and on push to `main` it will build
+#   and deploy the `dist/` contents into `/home/ubuntu/thisisrober/projects/<repo-name>/` on the target server.
